@@ -3,7 +3,8 @@ using namespace std;
 class Solution
 {
 public:
-    void nextPermutation(vector<int> &nums) {
+    void nextPermutation(vector<int> &nums)
+    {
         //    method -1 using cpp stl     // next_permutation(nums.begin(),nums.end());
 
         //    method 2 TC-O (3 * N) sc-O(N)
@@ -36,5 +37,5 @@ public:
         // }
         // // step-3 reverse the element after the index
         // reverse(nums.begin()+BreakIndex+1,nums.end());
-
-    };
+    }
+};
