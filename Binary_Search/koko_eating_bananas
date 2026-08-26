@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+using namespace std;
+class Solution
+{
+public:
+    long long CalculateHr(vector<int> &nums, int speed, int h)
+    {
+        int n = nums.size();
+        long long Th = 0;
+        for (int i = 0; i < n; i++)
+        {
+            Th = Th + (nums[i] + speed - 1) / speed;
+            if (Th > h)
+                return Th;
+        }
+        return Th;
+    }
+    // orginal Function
+    int minEatingSpeed(vector<int> &nums, int h)
+    {
+        // step-1 Brute Force
+        // int MaxE=*max_element(nums.begin(),nums.end());
+        // int n=nums.size();
+        // if(n>h) return -1;
+        // for(int k=1;k<=MaxE;k++)
+        // {
+        //     long long sum=0;
+        //    for(int j=0;j<n;j++)
+        //    {
+        //       long long  div=(nums[j]+k-1)/k;
+        //       sum+=div;
+        //       if(sum>h) break;
+        //    }
+        //     if(sum<=h) return k;
+        // }
+        //  return -1;
+
+        //  step-2 Optimal
+        int n = nums.size();
+
+        int low = 1, high = *max_element(nums.begin(), nums.end());
+
+        while (low < high)
+        {
+            int speed = low + (high - low) / 2;
+
+            long long Th = CalculateHr(nums, speed, h);
+
+            if (Th <= h)
+            {
+                high = speed;
+            }
+            else
+                low = speed + 1;
+        }
+        return low;
+    }
+};
